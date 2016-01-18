@@ -10,17 +10,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties(prefix = "spring.datasource")
+@ConfigurationProperties(prefix = "server")
 @Getter
 @Setter
 @NoArgsConstructor
-public class SpringDatasourceSettings {
+public class ServerSettings {
     @NotEmpty
-    private String url;
-    @NotEmpty
-    private String username;
-    @NotEmpty
-    private String password;
-    @NotEmpty
-    private String driverClassName;
+    private String port;
 }
