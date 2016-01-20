@@ -36,6 +36,7 @@ public class JpaConfiguration {
         config.setJdbcUrl(springDatasourceSettings.getUrl());
         config.setUsername(springDatasourceSettings.getUsername());
         config.setPassword(springDatasourceSettings.getPassword());
+        config.setMaximumPoolSize(springDatasourceSettings.getMaximumPoolSize());
 
         return new HikariDataSource(config);
     }

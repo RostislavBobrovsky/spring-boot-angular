@@ -8,6 +8,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import javax.validation.constraints.NotNull;
+
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "spring.datasource")
@@ -23,4 +25,6 @@ public class SpringDatasourceSettings {
     private String password;
     @NotEmpty
     private String driverClassName;
+    @NotNull
+    private Integer maximumPoolSize;
 }
