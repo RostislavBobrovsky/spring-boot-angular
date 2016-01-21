@@ -16,7 +16,7 @@ var path = {
     src: {
         html: 'src/main/webapp/app/html/**/*.html',
         index: 'src/main/webapp/app/index.html',
-        js: 'src/main/webapp/app/js/**/*.js',
+        js: ['src/main/webapp/app/js/app.js', 'src/main/webapp/app/js/**/*.js'],
         less: 'src/main/webapp/app/less/style.less',
         images: 'src/main/webapp/app/images/**/*.*',
         fonts: 'src/main/webapp/app/fonts/**/*.*',
@@ -32,7 +32,12 @@ var path = {
     },
     vendors: {
         js: [
-            'src/main/webapp/bower_components/jquery/dist/jquery.min.js'
+            'src/main/webapp/bower_components/jquery/dist/jquery.min.js',
+            'src/main/webapp/bower_components/angular/angular.min.js',
+            'src/main/webapp/bower_components/angular-resource/angular-resource.min.js',
+            'src/main/webapp/bower_components/angular-route/angular-route.min.js',
+            'src/main/webapp/bower_components/angular-bootstrap/ui-bootstrap.min.js',
+            'src/main/webapp/bower_components/angular-ui-router/release/angular-ui-router.min.js'
         ],
         css: [
             'src/main/webapp/bower_components/bootstrap/dist/css/bootstrap.min.css'
@@ -59,11 +64,7 @@ gulp.task('bower', function () {
 });
 
 gulp.task('jshint', function () {
-    return gulp.src([
-            'gulpfile.js',
-            'package.json',
-            path.src.js
-        ])
+    return gulp.src(['gulpfile.js', 'package.json'], path.src.js)
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
@@ -82,7 +83,7 @@ gulp.task('index:copy', function () {
 
 gulp.task('js:build', function () {
     return gulp.src(path.src.js)
-        .pipe(concat('main.js'))
+        .pipe(concat('build.js'))
         .pipe(gulp.dest(path.build.js))
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))

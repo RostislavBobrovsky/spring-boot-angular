@@ -5,21 +5,17 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="application/javascript" src="js/vendors.js"></script>
-    <script type="application/javascript" src="js/main.js"></script>
+    <script type="application/javascript" src="js/build.js"></script>
 </head>
-<body>
+<body ng-app="nodeProject" ng-controller="HomeController">
 <section class="header">
     Header
 </section>
 
-<section class="content">
-    <h1> HELLO WORLD </h1>
-    <input type="text" id="data"/>
-    <a id="post" href="#">POST</a>
-    <a id="get" href="#">GET</a>
-
-    <div id="container"></div>
-</section>
+<div>
+    <div ui-view="">
+    </div>
+</div>
 
 <section class="header">
     Footer

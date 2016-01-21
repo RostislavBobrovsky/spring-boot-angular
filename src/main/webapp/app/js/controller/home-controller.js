@@ -1,5 +1,8 @@
-$(document).ready(function() {
-    $('#get').click(function () {
+app.controller('HomeController', ['$scope', function ($scope) {
+
+    $scope.data = '';
+
+    $scope.get = function () {
         $.ajax({
             type: "GET",
             cache: false,
@@ -13,12 +16,10 @@ $(document).ready(function() {
                 $('#container').html(html);
             }
         });
-    });
+    };
 
-    $('#post').click(function () {
-        var data = $("#data").val();
-
-        if (!data) {
+    $scope.post = function () {
+        if (!$scope.data) {
             alert("Enter your data!");
         } else {
             $.ajax({
@@ -26,13 +27,11 @@ $(document).ready(function() {
                 cache: false,
                 url: '/persist',
                 data: {
-                    'data': data
+                    'data': $scope.data
                 },
                 success: function (response) {
-                    $('#get').click();
                 }
             });
         }
-
-    });
-});
+    };
+}]);
