@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class DataService implements IDataService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DataService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataService.class);
 
     @Autowired
     private DataRepository dataRepository;

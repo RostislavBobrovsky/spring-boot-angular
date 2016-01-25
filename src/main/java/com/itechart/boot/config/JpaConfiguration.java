@@ -4,6 +4,7 @@ import com.itechart.boot.Application;
 import com.itechart.boot.config.settings.SpringDatasourceSettings;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import liquibase.integration.spring.SpringLiquibase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,14 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = Application.class)
 public class JpaConfiguration {
-    private final Logger logger = LoggerFactory.getLogger(JpaConfiguration.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(JpaConfiguration.class);
 
     @Autowired
     private SpringDatasourceSettings springDatasourceSettings;
 
     @Bean
     public DataSource configureDataSource() {
-        logger.debug("Configuring Datasource");
+        LOGGER.debug("Configuring Datasource");
 
         HikariConfig config = new HikariConfig();
 
@@ -44,5 +45,17 @@ public class JpaConfiguration {
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
+    }
+
+    @Bean
+    public SpringLiquibase liquibase(DataSource dataSource) {
+        LOGGER.debug("Configuring Liquibase");
+
+        SpringLiquibase liquibase = new SpringLiquibase();
+
+        liquibase.setChangeLog("classpath:liquibase/changelog-master.xml");
+        liquibase.setDataSource(dataSource);
+
+        return liquibase;
     }
 }

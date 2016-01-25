@@ -19,7 +19,7 @@ import java.util.Map;
 @Controller
 public class DataController extends ExceptionHandlerController {
 
-    private static final Logger LOG = Logger.getLogger(DataController.class);
+    private static final Logger LOGGER = Logger.getLogger(DataController.class);
 
     @Autowired
     private DataService dataService;

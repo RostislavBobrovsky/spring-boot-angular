@@ -48,7 +48,7 @@ var path = {
         html: 'src/main/webapp/app/html/**/*.html',
         index: 'src/main/webapp/app/index.html',
         js: 'src/main/webapp/app/js/**/*.js',
-        less: 'src/main/webapp/less/style.less',
+        less: 'src/main/webapp/app/less/style.less',
         images: 'src/main/webapp/app/images/**/*.*',
         fonts: 'src/main/webapp/app/fonts/**/*.*'
     }
@@ -130,9 +130,9 @@ gulp.task('vendors:build', [
 ]);
 
 gulp.task('build', [
+    'vendors:build',
     'js:build',
-    'less:build',
-    'vendors:build'
+    'less:build'
 ]);
 
 gulp.task('default', ['bower', 'jshint', 'clean'], function () {
