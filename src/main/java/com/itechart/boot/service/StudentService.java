@@ -1,15 +1,18 @@
 package com.itechart.boot.service;
 
 import com.itechart.boot.domain.Student;
+import com.itechart.boot.dto.StudentDTO;
 import com.itechart.boot.repository.StudentRepository;
+import com.itechart.boot.utils.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
+
+import static com.itechart.boot.utils.ObjectMapperUtils.map;
+import static com.itechart.boot.utils.ObjectMapperUtils.mapAll;
 
 @Service
 public class StudentService implements IStudentService {
@@ -20,18 +23,33 @@ public class StudentService implements IStudentService {
     private StudentRepository studentRepository;
 
     @Override
-    public Student save(String problem) {
-        Student student = new Student();
+    public StudentDTO getStudent(Integer id) {
+        Student student = studentRepository.findOne(id);
 
-        student.setFirstName(problem);
-        student.setLastName(problem);
-        student.setBirthDate(new Date(Calendar.getInstance().getTime().getTime()));
+        return map(student, StudentDTO.class);
+    }
 
-        return studentRepository.save(student);
+    public StudentDTO getStudentByFirstName(String firstName) {
+        Student student = studentRepository
+                .findByFirstName(firstName)
+                .orElseThrow(() -> new EntityNotFoundException("Student was not found."));
+
+        return map(student, StudentDTO.class);
     }
 
     @Override
-    public List<Student> findAll() {
-        return studentRepository.findAll();
+    public List<StudentDTO> getAll() {
+        List<Student> students = studentRepository.findAll();
+
+        return mapAll(students, StudentDTO.class);
+    }
+
+    @Override
+    public StudentDTO save(StudentDTO studentDTO) {
+        Student student = map(studentDTO, Student.class);
+
+        student = studentRepository.save(student);
+
+        return map(student, StudentDTO.class);
     }
 }

@@ -1,12 +1,14 @@
 package com.itechart.boot.service;
 
-import com.itechart.boot.domain.Student;
+import com.itechart.boot.dto.StudentDTO;
 
 import java.util.List;
 
 public interface IStudentService {
 
-    public Student save(String problem);
+    public StudentDTO getStudent(Integer id);
 
-    public List<Student> findAll();
+    public StudentDTO save(StudentDTO studentDTO);
+
+    public List<StudentDTO> getAll();
 }

@@ -2,17 +2,18 @@ package com.itechart.boot.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-public class DataDTO {
-
+public class TeacherDTO {
     private Integer id;
-    @NonNull
-    private String description;
+    @NotBlank
+    private String firstName;
+    @NotBlank
+    private String lastName;
 }

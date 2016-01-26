@@ -1,38 +1,21 @@
-app.controller('HomeController', ['$scope', function ($scope) {
+app.controller('HomeController', ['$scope', 'Student', function ($scope, Student) {
 
-    $scope.user = {};
-    $scope.user.name = '';
+    $scope.student = {};
+
+    Student.get({id: 1}, function (data) {
+    });
 
     $scope.get = function () {
-        $.ajax({
-            type: "GET",
-            cache: false,
-            url: '/getRandomData',
-            data: "",
-            success: function (response) {
-                var html = "";
-                $.each(response.data, function (i) {
-                    html = html + response.data[i] + "<br/>";
-                });
-                $('#container').html(html);
-            }
+        Student.getAll(function (students) {
+            var html = "";
+            $.each(students, function (i) {
+                html = html + JSON.stringify(students[i]) + "<br/>";
+            });
+            $('#container').html(html);
         });
     };
 
     $scope.post = function () {
-        if (!$scope.user.name) {
-            alert("Enter your data!");
-        } else {
-            $.ajax({
-                type: "POST",
-                cache: false,
-                url: '/persist',
-                data: {
-                    'data': $scope.user.name
-                },
-                success: function (response) {
-                }
-            });
-        }
+        Student.save($scope.student);
     };
 }]);
