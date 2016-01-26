@@ -1,7 +1,7 @@
 package com.itechart.boot.web;
 
-import com.itechart.boot.domain.Data;
-import com.itechart.boot.service.DataService;
+import com.itechart.boot.domain.Student;
+import com.itechart.boot.service.StudentService;
 import com.itechart.boot.utils.Ajax;
 import com.itechart.boot.utils.ExceptionHandlerController;
 import com.itechart.boot.utils.RestException;
@@ -17,12 +17,12 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class DataController extends ExceptionHandlerController {
+public class StudentController extends ExceptionHandlerController {
 
-    private static final Logger LOGGER = Logger.getLogger(DataController.class);
+    private static final Logger LOGGER = Logger.getLogger(StudentController.class);
 
     @Autowired
-    private DataService dataService;
+    private StudentService studentService;
 
     @RequestMapping(value = "/persist", method = RequestMethod.POST)
     public @ResponseBody Map<String, Object> persist(@RequestParam("data") String data) throws RestException {
@@ -30,7 +30,7 @@ public class DataController extends ExceptionHandlerController {
             if (data == null || data.equals("")) {
                 return Ajax.emptyResponse();
             }
-            dataService.save(data);
+            studentService.save(data);
             return Ajax.emptyResponse();
         } catch (Exception e) {
             throw new RestException(e);
@@ -40,7 +40,7 @@ public class DataController extends ExceptionHandlerController {
     @RequestMapping(value = "/getRandomData", method = RequestMethod.GET)
     public @ResponseBody Map<String, Object> getRandomData() throws RestException {
         try {
-            List<Data> result = dataService.findAll ();
+            List<Student> result = studentService.findAll ();
             return Ajax.successResponse(result);
         } catch (Exception e) {
             throw new RestException(e);

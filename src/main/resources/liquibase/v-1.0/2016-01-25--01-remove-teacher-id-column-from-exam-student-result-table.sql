@@ -1,0 +1,3 @@
+ALTER TABLE exam_student_result DROP CONSTRAINT exam_result_teacher_fk;
+DROP INDEX exam_student_result_teacher_id_idx RESTRICT;
+ALTER TABLE exam_student_result DROP teacher_id;

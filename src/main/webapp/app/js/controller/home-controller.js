@@ -1,6 +1,7 @@
 app.controller('HomeController', ['$scope', function ($scope) {
 
-    $scope.data = '';
+    $scope.user = {};
+    $scope.user.name = '';
 
     $scope.get = function () {
         $.ajax({
@@ -19,7 +20,7 @@ app.controller('HomeController', ['$scope', function ($scope) {
     };
 
     $scope.post = function () {
-        if (!$scope.data) {
+        if (!$scope.user.name) {
             alert("Enter your data!");
         } else {
             $.ajax({
@@ -27,7 +28,7 @@ app.controller('HomeController', ['$scope', function ($scope) {
                 cache: false,
                 url: '/persist',
                 data: {
-                    'data': $scope.data
+                    'data': $scope.user.name
                 },
                 success: function (response) {
                 }

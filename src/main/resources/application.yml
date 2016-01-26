@@ -6,7 +6,7 @@ spring:
     active: dev
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/spring_boot_test
+    url: jdbc:postgresql://localhost:5432/students_spring_boot_angular
     username: postgres
     password: root
     maximumPoolSize: 10
