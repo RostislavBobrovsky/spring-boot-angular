@@ -1,4 +1,5 @@
-app.controller('HomeController', ['$scope', 'Student', function ($scope, Student) {
+app.controller('TeacherController', ['$scope', 'Student', function ($scope, Student) {
+    $rootScope.currentActiveState = 'teacher';
 
     $scope.student = {};
 

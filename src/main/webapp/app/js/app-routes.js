@@ -33,13 +33,19 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$provide',
 
         $httpProvider.interceptors.push('MainHttpInterceptor');
 
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/student');
 
         $stateProvider
-            .state('home', {
-                name: 'home',
-                url: '/home',
-                templateUrl: 'html/home.html'
-            });
+            .state('student', {
+                name: 'student',
+                url: '/student',
+                templateUrl: 'html/student.html'
+            })
+            .state('teacher', {
+                name: 'teacher',
+                url: '/teacher',
+                templateUrl: 'html/teacher.html'
+            })
+        ;
     }
 ]);

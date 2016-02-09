@@ -7,18 +7,18 @@
     <script type="application/javascript" src="js/vendors.js"></script>
     <script type="application/javascript" src="js/build.js"></script>
 </head>
-<body ng-app="nodeProject" ng-controller="HomeController">
-<section class="header">
-    Header
-</section>
+<body ng-app="nodeProject">
+<header>
+    <ng-include src="'html/template/header.html'"></ng-include>
+</header>
 
 <div>
     <div ui-view="">
     </div>
 </div>
 
-<section class="header">
-    Footer
-</section>
+<footer>
+    <ng-include src="'html/template/footer.html'"></ng-include>
+</footer>
 </body>
 </html>
