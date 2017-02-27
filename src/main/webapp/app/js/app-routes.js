@@ -36,15 +36,20 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$provide',
         $urlRouterProvider.otherwise('/student');
 
         $stateProvider
-            .state('student', {
-                name: 'student',
-                url: '/student',
-                templateUrl: 'html/student.html'
-            })
             .state('teacher', {
-                name: 'teacher',
                 url: '/teacher',
-                templateUrl: 'html/teacher.html'
+                templateUrl: 'html/teacher/teacher.html',
+                controller: 'TeacherController'
+            })
+            .state('student', {
+                url: '/student',
+                templateUrl: 'html/student/student.html',
+                controller: 'StudentController'
+            })
+            .state('student.properties', {
+                url: '/properties',
+                templateUrl: 'html/student/properties-student.html',
+                controller: 'PropertyStudentController'
             })
         ;
     }

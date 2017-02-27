@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <a class="btn btn-success" ui-sref=".properties">Add</a>
+        <button type="button" class="btn btn-warning" ng-click="goToState('student.properties')">Edit</button>
+    </div>
+
+    <div class="row">
+        <table class="table table-striped" style="font-size: 80%">
+            <thead>
+            <tr>
+                <th style="width: 30px;" ng-click="selectAll()"><input type="checkbox"></th>
+                <th style="width: 60px;">ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Birth Date</th>
+                <th>Hostel Live</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="s in ::students">
+                <td>
+                    <input type="checkbox" ng-model="s.selected">
+                </td>
+                <td>
+                    {{ s.id }}
+                </td>
+                <td>
+                    {{ s.firstName }}
+                </td>
+                <td>
+                    {{ s.lastName }}
+                </td>
+                <td>
+                    {{ s.birthDate | date: 'yyyy-MM-dd' }}
+                </td>
+                <td>
+                    {{ s.hostelLive }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

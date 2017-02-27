@@ -1,4 +1,7 @@
-app.controller('NavigationController', ['$scope', '$location', function ($scope, $location) {
+app.controller('NavigationController', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
+
+    $rootScope.currentActiveState = {};
+
     $scope.current = {};
     $scope.current.year = new Date().getFullYear();
 
